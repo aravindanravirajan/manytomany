@@ -2,10 +2,13 @@ package com.example.demo.Model;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,12 +33,12 @@ public class Studenttable {
 	private String dept;
 	@Column(name = "Age")
 	private Integer age;
-	@ManyToMany//(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "student_course",joinColumns = { @JoinColumn(name = "student_id")/*, nullable = false, updatable = false, insertable = false)*/}, inverseJoinColumns = {@JoinColumn(name = "course_id")} )
-	private Set<UserTable> usertables = new HashSet<>() ;
+	private List<UserTable> usertables;
 
 	public Studenttable(Integer id, String studentName, Date dateOfBirth, String dept, Integer age,
-			Set<UserTable> usertables) {
+			List<UserTable> usertables) {
 		super();
 		this.id = id;
 		this.studentName = studentName;
@@ -101,11 +104,11 @@ public class Studenttable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Set<UserTable> getUsertables() {
+	public List<UserTable> getUsertables() {
 		return usertables;
 	}
 
-	public void setUsertables(Set<UserTable> usertables) {
+	public void setUsertables(List<UserTable> usertables) {
 		this.usertables = usertables;
 	}
 

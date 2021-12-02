@@ -26,7 +26,7 @@ public class Controller {
 		return userservice.getmany();
 	}
 
-	@PostMapping("/insert{id}")
+	@PostMapping("/insert/{id}")
 	public void insert(@RequestBody List<UserTable> usertable ,@PathVariable Integer id) {
 		userservice.inserts(usertable);
 	}

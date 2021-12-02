@@ -1,9 +1,12 @@
 package com.example.demo.Model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,23 +21,23 @@ public class UserTable {
 	private Integer courseId;
 	private String courseName;
 	private Integer studentId;
-	@ManyToMany(mappedBy = "usertables")//(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "usertables")
-	private Set<Studenttable> studenttables = new HashSet<>();
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "usertables")
+	private List<Studenttable> studenttables;
 	
 	
 	
 	
-	public UserTable(Integer courseId, String courseName, Integer studentId, Set<Studenttable> studenttables) {
+	public UserTable(Integer courseId, String courseName, Integer studentId, List<Studenttable> studenttables) {
 		super();
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.studentId = studentId;
 		this.studenttables = studenttables;
 	}
-	public Set<Studenttable> getStudenttables() {
+	public List<Studenttable> getStudenttables() {
 		return studenttables;
 	}
-	public void setStudenttables(Set<Studenttable> studenttables) {
+	public void setStudenttables(List<Studenttable> studenttables) {
 		this.studenttables = studenttables;
 	}
 	public Integer getCourseId() {
